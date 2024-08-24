@@ -9,6 +9,7 @@ public class CustomArrayList {
         list2.add(0, "3");
         list2.add(1, "2");
         list2.add(1, "1");
+        list2.add(3, "4");
 
         ArrayListCustom<String> list = new ArrayListCustom<>();
         list.add(0, "Max");
