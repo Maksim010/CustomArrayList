@@ -19,6 +19,9 @@ public class CustomArrayList {
         list.add(4, "Anton");
         list.add(5, "qwe");
 
+        ArrayListCustom<String> list3 = new ArrayListCustom<>(14);
+        System.out.println(list3);
+
 
         System.out.println(list.isEmpty());
         list.remove("Max");
@@ -27,6 +30,7 @@ public class CustomArrayList {
         list.addAll(list2);
         System.out.println(list2);
         list.sort(String::compareTo);
+        list.size();
 
 
         System.out.println(Arrays.toString(new ArrayListCustom[]{list}));
@@ -34,16 +38,17 @@ public class CustomArrayList {
 
 
     public static class ArrayListCustom<T> {
-        private final int INIT_CAPACITY = 10;
-        private Object[] arr = new Object[INIT_CAPACITY];
+        private static final int INIT_CAPACITY = 10;
+        private Object[] arr ;
         public int size = 0;
-        private int capacity=0;
+
 
         public ArrayListCustom(int capacity) {
-            this.capacity = capacity;
+            arr=new Object[capacity];
         }
 
         public ArrayListCustom() {
+            arr= new Object[INIT_CAPACITY];
         }
 
         public int size() {
@@ -120,10 +125,10 @@ public class CustomArrayList {
         }
 
         public void sort(Comparator<? super T> C) {
-            quickSort(arr,0,size-1,C);
+            quickSort((T[]) arr,0,size-1,C);
         }
 
-        private void quickSort(Object[] array, int low, int high, Comparator<? super T> comparator) {
+        private void quickSort(T [] array, int low, int high, Comparator<? super T> comparator) {
             if (low < high ) {
                 int splitIndex = split(array, low, high, comparator);
                 quickSort(array, low, splitIndex - 1, comparator);
@@ -131,7 +136,7 @@ public class CustomArrayList {
             }
         }
 
-        private int split(Object[] array, int low, int high, Comparator<? super T> comparator) {
+        private int split(T [] array, int low, int high, Comparator<? super T> comparator) {
             T middle = (T) array[high];
             int i = low-1 ;
             for (int j = low; j < high; j++) {
@@ -156,10 +161,7 @@ public class CustomArrayList {
         public String toString() {
             return "arr=" + Arrays.toString(arr) +
                     ", size=" + size ;
-        }
 
-        public void setCapacity(int capacity) {
-            this.capacity = capacity;
         }
     }
 }
