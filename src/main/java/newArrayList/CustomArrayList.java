@@ -37,6 +37,14 @@ public class CustomArrayList {
         private final int INIT_CAPACITY = 10;
         private Object[] arr = new Object[INIT_CAPACITY];
         public int size = 0;
+        private int capacity=0;
+
+        public ArrayListCustom(int capacity) {
+            this.capacity = capacity;
+        }
+
+        public ArrayListCustom() {
+        }
 
         public int size() {
             return size;
@@ -148,6 +156,10 @@ public class CustomArrayList {
         public String toString() {
             return "arr=" + Arrays.toString(arr) +
                     ", size=" + size ;
+        }
+
+        public void setCapacity(int capacity) {
+            this.capacity = capacity;
         }
     }
 }
